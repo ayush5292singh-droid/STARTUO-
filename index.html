@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#07100c" />
+  <meta name="description" content="NEXORA MAP - Explore real places around you." />
+
+  <title>NEXORA MAP</title>
+
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+  />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+  <div class="app">
+
+    <!-- TOP BAR -->
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-icon">N</div>
+        <div>
+          <h1>NEXORA</h1>
+          <span>MAP INTELLIGENCE</span>
+        </div>
+      </div>
+
+      <button id="locateBtn" class="icon-btn" title="My location">
+        📍
+      </button>
+    </header>
+
+
+    <!-- SEARCH -->
+    <section class="search-area">
+      <div class="search-box">
+        <span>🔎</span>
+        <input
+          id="searchInput"
+          type="text"
+          placeholder="Search places, shops, hospitals..."
+          autocomplete="off"
+        />
+        <button id="clearSearch" class="clear-btn">×</button>
+        <button id="searchBtn" class="search-btn">Search</button>
+      </div>
+
+      <div id="suggestions" class="suggestions"></div>
+    </section>
+
+
+    <!-- CATEGORY BAR -->
+    <section class="categories">
+
+      <button class="category active" data-type="all">
+        🌎 All
+      </button>
+
+      <button class="category" data-type="food">
+        🍔 Food
+      </button>
+
+      <button class="category" data-type="shopping">
+        🛍️ Shops
+      </button>
+
+      <button class="category" data-type="health">
+        🏥 Health
+      </button>
+
+      <button class="category" data-type="education">
+        🎓 Education
+      </button>
+
+      <button class="category" data-type="fuel">
+        ⛽ Fuel
+      </button>
+
+      <button class="category" data-type="hotel">
+        🏨 Hotels
+      </button>
+
+      <button class="category" data-type="services">
+        🔧 Services
+      </button>
+
+    </section>
+
+
+    <!-- MAP -->
+    <main id="map"></main>
+
+
+    <!-- MAP BUTTONS -->
+    <div class="map-controls">
+
+      <button id="exploreBtn" class="main-control">
+        🔥 Explore Here
+      </button>
+
+      <button id="whatsHereBtn" class="control">
+        📌 What's Here?
+      </button>
+
+      <button id="intelligenceBtn" class="control">
+        🧠 Map Intelligence
+      </button>
+
+      <button id="layersBtn" class="control">
+        🗺️ Layers
+      </button>
+
+    </div>
+
+
+    <!-- STATUS -->
+    <div id="status" class="status hidden">
+      <div class="loader"></div>
+      <span id="statusText">Searching...</span>
+    </div>
+
+
+    <!-- RESULTS -->
+    <section id="resultsPanel" class="results-panel hidden">
+
+      <div class="results-header">
+        <div>
+          <span class="small-label">NEXORA DISCOVERY</span>
+          <h2 id="resultsTitle">Nearby Places</h2>
+        </div>
+
+        <button id="closeResults">×</button>
+      </div>
+
+      <div id="resultsList"></div>
+
+    </section>
+
+
+    <!-- PLACE MODAL -->
+    <div id="placeModal" class="modal hidden">
+
+      <div class="modal-card">
+
+        <button id="closeModal" class="modal-close">×</button>
+
+        <div id="placeIcon" class="place-big-icon">📍</div>
+
+        <span id="placeType" class="place-type">PLACE</span>
+
+        <h2 id="placeName">Place</h2>
+
+        <p id="placeAddress">Address unavailable</p>
+
+        <div id="placeMeta" class="place-meta"></div>
+
+        <div class="place-actions">
+
+          <button id="directionBtn" class="action primary">
+            🧭 Directions
+          </button>
+
+          <button id="saveBtn" class="action">
+            ❤️ Save
+          </button>
+
+          <button id="callBtn" class="action">
+            📞 Call
+          </button>
+
+          <button id="websiteBtn" class="action">
+            🌐 Website
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- INTELLIGENCE MODAL -->
+    <div id="intelligenceModal" class="modal hidden">
+
+      <div class="modal-card intelligence-card">
+
+        <button id="closeIntelligence" class="modal-close">×</button>
+
+        <div class="brain">🧠</div>
+
+        <span class="place-type">NEXORA AI-STYLE MAP SUMMARY</span>
+
+        <h2>Map Intelligence</h2>
+
+        <p class="muted">
+          A summary of the real mapped places found in the current area.
+        </p>
+
+        <div id="intelligenceStats" class="stats-grid"></div>
+
+      </div>
+
+    </div>
+
+
+    <!-- LAYERS MODAL -->
+    <div id="layersModal" class="modal hidden">
+
+      <div class="modal-card">
+
+        <button id="closeLayers" class="modal-close">×</button>
+
+        <div class="brain">🗺️</div>
+
+        <span class="place-type">MAP SETTINGS</span>
+
+        <h2>Map Layers</h2>
+
+        <div class="layer-options">
+
+          <button data-layer="standard">
+            🗺️ Standard Map
+          </button>
+
+          <button data-layer="satellite">
+            🌍 Satellite
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- TOAST -->
+    <div id="toast" class="toast hidden"></div>
+
+  </div>
+
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="script.js"></script>
+
+</body>
+</html>
